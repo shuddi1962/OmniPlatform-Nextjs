@@ -47,7 +47,7 @@ export async function updateSession(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
-  if (pathname.startsWith("/admin")) {
+  if (pathname.startsWith("/admin") && user) {
     const role = user.user_metadata?.role;
     if (role !== "admin") {
       const url = request.nextUrl.clone();

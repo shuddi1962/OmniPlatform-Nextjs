@@ -7,7 +7,6 @@ import { createClient } from "@/lib/supabase/client";
 
 export default function RegisterPage() {
   const router = useRouter();
-  const supabase = createClient();
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -35,6 +34,7 @@ export default function RegisterPage() {
       return;
     }
 
+    const supabase = createClient();
     const { error } = await supabase.auth.signUp({
       email,
       password,
@@ -57,6 +57,7 @@ export default function RegisterPage() {
     setSocialLoading(provider);
     setError(null);
 
+    const supabase = createClient();
     const { error } = await supabase.auth.signInWithOAuth({
       provider,
       options: {
